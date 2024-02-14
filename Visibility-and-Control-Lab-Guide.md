@@ -11,8 +11,7 @@ context.
 
 ### Scenario
 
-The Exampli Corp, a mock corporation, is rushing to finish a banking app for
-their customer Bank of Anthos in time before the fiscal year ends.
+The Exampli Corp, a mock corporation, is rushing to build a number of cloud based applications before their fiscal year ends.
 Up against challenging deadlines, the development and infrastructure teams are working
 around the clock to get their app built, tested, and released to hit their goals.
 
@@ -21,7 +20,7 @@ adopting security from code to cloud. Once in production Exampli Corps operation
 and security teams continue to leverage Prisma Cloud to monitor and protect runtime
 resources, reduce the attack surface, and enforce least privilege.
 
-Will The Exampli Corp team take the time to build a secure app? Or will the stress of rushing to complete the Bank of Anthos app in time lead to mistakes?
+Will The Exampli Corp team take the time to build a secure app? Or will the stress of rushing to complete their apps in time lead to mistakes?
 
 ### Resources
 
@@ -44,9 +43,9 @@ below :
 
 #### Cloud Security Posture Management
 
-Cloud-native applications allow organizations to build and run scalable applications with great agility and resilience. However, they also present unique security challenges. Ensuring applications and services are secure at runtime is a core responsibility for security teams. CSPM tools can reduce the burden on cloud security teams by automating routine security monitoring, audits and remediations, allowing security teams to focus on high-priority items and prevent configuration drift. 
+The cloud allows organizations to build and run scalable applications with great agility and resilience. However, the cloud also presents unique security challenges. Ensuring applications and services are secure at runtime is a core responsibility for security teams. CSPM tools can reduce the burden on cloud security teams by automating routine security monitoring, audits and remediations, allowing security teams to focus on high-priority items and prevent configuration drift. 
 
-In this section, you will explore some use cases for securing GKE resources and services.
+In this section you will explore how Prisma Cloud can help security teams inventory the applications and services running in their multi-cloud footprint. 
 
 1. Login to [Prisma Cloud](https://app3.prismacloud.io/login).
 
@@ -58,57 +57,119 @@ In this section, you will explore some use cases for securing GKE resources and 
 
 ![Alt text for image](/screenshots/shift_left/cloud-security-posture-management-2.png "Optional title")
 
-5. The **Asset Inventory** can be a helpful place to get a high level view on cloud assets and their compliance with defined policies. Without constant visibility of what is being deployed in your cloud footprint, you cannot begin to secure it.
+5. The **Asset Inventory** is a helpful page in Prisma Cloud where teams can get a high level view of their cloud assets and their compliance with defined policies. Without constant visibility of what is being deployed in your cloud footprint, you cannot begin to secure it.
 
 6. Your screen should look similar to the one below:
 
 ![Alt text for image](/screenshots/shift_left/cloud-security-posture-management-4.png "Optional title")
 
-7. We know the Exampli Corp team is using Kubernetes. Let's investigate further by clicking on **GCP** under the **Cloud** column. Here we can see all GCP services in use.
+7. Begin by clicking on **AWS** under the **Cloud** column.
 
-![Alt text for image](/screenshots/shift_left/cloud-security-posture-management-5.png "Optional title")
+![](/screenshots/v-and-c/Screenshot2024-02-13at2.52.38PM.png)
 
-8. We can see several issues associated with **Google Compute Engine**. Click on this service name to drill down further. On the next page we can see issues associated with **Google Compute Engine VM Instance**. Click on the Total assets to investigate.
+8. Here you will see a list of all discovered AWS cloud services for Exampli Corp. Prisma Cloud inventories the services and displays associated misconfigurations and vulnerabilities.
 
-![Alt text for image](/screenshots/shift_left/cloud-security-posture-management-6.png "Optional title")
+Feel free to explore any of the services to learn more about them.
 
-9. Click on the **gke-bank-of-anthos-default-pool-681c740d-ob6o** Asset Name. A side panel will open on the right side to quickly see an Overview, Attack Paths, Alerts, Vulnerabilities and more for this GKE cluster.
+![](/screenshots/v-and-c/Screenshot2024-02-13at2.50.00PM.png)
 
-![Alt text for image](/screenshots/shift_left/cloud-security-posture-management-7.png "Optional title")
+9. Because Exampli Corp's upcoming application is running on EC2, let's explore the Amazon EC2 Service Name.
 
-10. Let's take a look at the raw config for this resource by clicking on the **View Config** button
+In the **Service Name** column, click on the **Amazon EC2** service.
 
-![Alt text for image](/screenshots/shift_left/cloud-security-posture-management-8.png "Optional title")
+![](/screenshots/v-and-c/Screenshot2024-02-13at3.01.23PM.png)
 
-11. Here we can see the raw configuration for this GKE cluster.
+10. Now we can see all the associated asset types for Amazon EC2. This includes the EBS Volume and EC2 Elastic Address for example. 
 
-![Alt text for image](/screenshots/shift_left/cloud-security-posture-management-9.png "Optional title")
+Let's learn more about the EC2 Instances themselves. Click on the value under the **Total** column in the EC2 Instance row.
 
-12. To learn more let's investigate the findings associated with this GKE cluster. Close out the resource config and click on the **Attack Paths** tab.
+![](/screenshots/v-and-c/Screenshot2024-02-13at3.01.23PMcopy.png)
 
-![Alt text for image](/screenshots/shift_left/cloud-security-posture-management-10.png "Optional title")
+Your screen should look similar to the one below.
 
-13. Note the **Findings Types** and see how they correlate with the Attack Path graph. Click on the **Internet Exposure** icon within the graph. Here we can see all the services associated with the host that make it vulnerable to outside attacks.
+![](/screenshots/v-and-c/Screenshot2024-02-13at3.09.53PM.png)
 
-![Alt text for image](/screenshots/shift_left/cloud-security-posture-management-11.png "Optional title")
+Here you can see all of the EC2 Instances and associated details, including Alerts, Vulnerabilities and Account information.
 
-14. Pan over to the right of the Attack Path graph and click on the **Privilege Escalation** icon within the graph. Here we can see that elevated privileges are assigned to the host. An adversary can destroy sensitive information stored in the cloud resources, making irreversible damage to Exampli's organization.
+11. Let's take a look at the **PANW-WebServer-awsjamconfig** Asset.
 
-![Alt text for image](/screenshots/shift_left/cloud-security-posture-management-12.png "Optional title")
+![](/screenshots/v-and-c/Screenshot2024-02-13at3.45.29PM.png)
 
-15. Let's revisit the Internet Exposure finding by reviewing the associated alert and finding out the proper remediation. Click on the **Alerts** tab.
+A sidecar window will open with an overview along with other tabs for investigation.
 
-![Alt text for image](/screenshots/shift_left/cloud-security-posture-management-13.png "Optional title")
+![](/screenshots/v-and-c/Screenshot2024-02-13at3.46.54PM.png)
 
-16. Next, click on the Alerts ID for the **GCP VM instance that is internet reachable with unrestricted access (0.0.0.0/0)** policy. Here we can see an Overview as well as a Recommendation to resolve the issue.
 
-![Alt text for image](/screenshots/shift_left/cloud-security-posture-management-14.png "Optional title")
+12. To learn more let's investigate the **Findings** tab.
 
-17. Click on the **Recommendation** tab. Here we can see the necessary steps to fix the exposed asset. 
+![](/screenshots/v-and-c/Screenshot2024-02-13at3.57.11PM.png)
 
-![Alt text for image](/screenshots/shift_left/cloud-security-posture-management-15.png "Optional title")
+Here you can see this EC2 instance is exposed to the internet and is not configured with Instance Metadata Service v2 (IMDSv2).
 
-In addition to the asset inventory and leading cloud management capabilities, Prisma Cloud makes compliance incredibly easy. Let's move on to the next exercise on compliance.
+
+13. Next click on the **Attack Paths** tab to see a graphical view of the findings.
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at4.04.53PM.png)
+
+Explore the icons within the Attack Path graph. In the screenshots below we can see the assets that are exposed to the internet as well as the IMDSv2 misconfiguration. 
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at4.13.32PM.png)
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at4.14.17PM.png)
+
+14. Prisma Cloud keeps an inventory of alerts making it easy for security teams to prioritize the most important findings. 
+15. Close the sidecar window by clicking the X at the top right of the screen and click on the **Alerts** tab at the top of the UI. 
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at4.24.07PM.png)
+
+16. The **Overview** tab is an inventory of alerts with filtering capabilities to isolate what is most important. Feel free to try out the different filters. Admins are able to save filters to create customized views.
+
+17. Next, let's take a look at the **Highest Priority** tab. This tab lists the highest priority alerts within the last 24 hours. If no findings are populated use the Time Range filter to increase the length of time. Keep this in mind moving forward. 
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at4.31.37PM.png)
+
+18. Now let's click on the **Incidents** tab. The Incidents tab filters events that depend on audit/network logging and monitoring of runtime events via an agent.
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at5.23.29PM.png)
+
+Click on the **Traffic from a suspicious IP address associated with Cryptominer activity** policy to expand the alerts and then click on an Alert ID to open a sidecar window to get an Overview, Anomaly Details and Recommendation for remediation. 
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at5.30.04PM.png)
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at5.37.01PM.png)
+
+19. Next let's explore some more **Risky Attack Paths**. On this tab you can find an inventory of attack paths present within Exampli Corp's network. 
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at5.52.45PM.png)
+
+Scroll down and click on the **Data exposure risk due to AWS S3 hosting static website contains sensitive information** policy to expand the alerts and then click on an Alert ID to open a sidecar window to review the evidence. Feel free to explore other events.
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at6.00.52PM.png)
+
+20. Close the sidecar window and click on the **Exposure** tab next. This view shows all Network policy type violations within Exampli Corp's assets.
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at6.08.15PM.png)
+
+Let's investigate the **Azure Virtual Machine in running state that is internet reachable with unrestricted access (0.0.0.0/0)** policy. Click on the policy to expand the alerts. Click on one of the alerts to see an overview and recommendation to resolve the issue.
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at6.19.35PM.png)
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at6.20.28PM.png)
+
+21. Close out any sidecar windows and select the **CIEM** tab to discover resources that have misconfigured permissions. 
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at6.24.23PM.png)
+
+Click on the **AWS Lambda Function with IAM write permissions** policy to expand the alerts. Click on one of the alerts to see an overview and recommendation to resolve the issue.
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at6.35.57PM.png)
+
+![](/screenshots/v-and-c/Screenshot2024-02-13at6.38.31PM.png)
+
+
+
+
+In this section we explored the various filtered views of alerts discovered by Prisma Cloud. In the next section we will focus on Compliance. 
 
 #### Compliance in the Cloud
 
