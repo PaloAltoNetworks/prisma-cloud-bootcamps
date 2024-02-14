@@ -22,23 +22,6 @@ resources, reduce the attack surface, and enforce least privilege.
 
 Will The Exampli Corp team take the time to build a secure app? Or will the stress of rushing to complete their apps in time lead to mistakes?
 
-### Resources
-
-Vulnerable IaC :
-
-In this lab we leverage some intentionally vulnerable IaC. To learn more about the project and
-its contributors visit the link below:
-
-- https://github.com/bridgecrewio/terragoat
-
-Bank of Anthos Application :
-
-In this lab there is a mock banking application that is used as the application the Exampli Corp
-development team is building. To learn more about the project and its contributors visit the link
-below :
-
-- https://github.com/GoogleCloudPlatform/bank-of-anthos
-
 ### Exercise
 
 #### Cloud Security Posture Management
@@ -201,11 +184,11 @@ It looks like the **Networking** service has a policy failure. Click on the red 
 
 ![Alt text for image](/screenshots/shift_left/compliance-in-the-cloud-5b.png "Optional title")
 
-In this lab we covered various topics around IaC security and CSPM but there are many additional features and capabilities within Prisma Cloud. Feel free to explore the UI and investigate different asset types.
+In this lab we covered various topics around CSPM but there are many additional features and capabilities within Prisma Cloud. Feel free to explore the UI and investigate further.
 
 ## Summary \ Resources
 
-The Prisma Cloud team here at Palo Alto sincerely hopes you enjoyed this workshop. Today, organizations need a growing set of capabilities to secure modern cloud applications. Implementing DevSecOps into your development and security workflows with Prisma Cloud can provide the increased speed and agility your organization needs to implement zero trust throughout the entire development lifecycle. Check out the resources below for more information!
+The Prisma Cloud team here at Palo Alto sincerely hopes you enjoyed this workshop. Check out the resources below for more information!
 
 [Live Workshops](https://bridgecrew.io/resource/workshops/)
 
